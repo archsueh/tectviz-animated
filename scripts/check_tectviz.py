@@ -4,18 +4,18 @@
 Why one file and not six
 ------------------------
 The archviz family is five repositories that share one design system. The
-existing convention is "archviz-diagram is the source, the others carry synced
+existing convention is "tectviz-diagram is the source, the others carry synced
 copies" — which is exactly the disease this kit treats: a fact written in more
 than one place drifts. Six checkers copied into five repos is thirty places.
 
-So: **one** checker file, plus one `archviz-checks.json` per repo. The config
+So: **one** checker file, plus one `tectviz-checks.json` per repo. The config
 differs per repo because the repos genuinely differ; the code does not.
 
-    scripts/check_archviz.py                  # run every configured check
-    scripts/check_archviz.py --only routing   # run one check
-    scripts/check_archviz.py --list           # list configured checks
-    scripts/check_archviz.py --self-test      # adversarial fixtures
-    scripts/check_archviz.py --self-hash      # KIT_VERSION + sha256 (drift audit)
+    scripts/check_tectviz.py                  # run every configured check
+    scripts/check_tectviz.py --only routing   # run one check
+    scripts/check_tectviz.py --list           # list configured checks
+    scripts/check_tectviz.py --self-test      # adversarial fixtures
+    scripts/check_tectviz.py --self-hash      # KIT_VERSION + sha256 (drift audit)
 
 Checks
 ------
@@ -71,10 +71,10 @@ import re
 import sys
 from pathlib import Path
 
-KIT_VERSION = 7
+KIT_VERSION = 8
 
 ROOT = Path(__file__).resolve().parent.parent
-CONFIG_NAME = "archviz-checks.json"
+CONFIG_NAME = "tectviz-checks.json"
 
 # Directories `pycompile` never descends into. A vendored or generated tree is
 # not this repo's source, and `.git` alone would multiply the file count.
@@ -532,7 +532,7 @@ def check_coverage(root: Path, cfg: dict) -> Result:
 
     Reachability is transitive, not direct. This family chains: SKILL.md names
     a handful of entry points, and those name others. Requiring SKILL.md to name
-    all 49 of archviz-diagram's reference files would be wrong — 13 of them are
+    all 49 of tectviz-diagram's reference files would be wrong — 13 of them are
     legitimately reached through a chain, and forcing them all into the index
     would break that repo's 44,000-byte budget. What matters is that a path
     exists from the entry point, because under progressive disclosure a file
@@ -544,9 +544,9 @@ def check_coverage(root: Path, cfg: dict) -> Result:
     `counts` cleanly.
 
     Measured on the family (2026-10-09) — the check's first real outing:
-    archviz-3d had **4/4** reference files unreachable and archviz-sketch **2/2**
-    (a whole `references/` directory nothing pointed at), archviz-diagram 1/49
-    (`3d-cleanup-log.md`), archviz-animated and archviz-layout 0.
+    tectviz-3d had **4/4** reference files unreachable and tectviz-sketch **2/2**
+    (a whole `references/` directory nothing pointed at), tectviz-diagram 1/49
+    (`3d-cleanup-log.md`), tectviz-animated and tectviz-layout 0.
     """
     r = Result("coverage")
     specs = cfg.get("coverage") or []
@@ -777,9 +777,9 @@ def check_deps(root: Path, cfg: dict) -> Result:
     Same disease as the version written in four places: the set of imports is a
     fact, and the set of declared dependencies is the same fact written down
     again — so they drift silently. Measured across the family on 2026-10-09,
-    **all five repos had at least one undeclared import**: archviz-layout
-    (Pillow, playwright — no manifest at all), archviz-animated (matplotlib,
-    numpy, scipy), archviz-3d and archviz-sketch (Pillow), archviz-diagram
+    **all five repos had at least one undeclared import**: tectviz-layout
+    (Pillow, playwright — no manifest at all), tectviz-animated (matplotlib,
+    numpy, scipy), tectviz-3d and tectviz-sketch (Pillow), tectviz-diagram
     (PyYAML, pandas).
 
     Reverse (kit v2): every declared distribution must be imported somewhere.
@@ -879,7 +879,7 @@ def check_deps(root: Path, cfg: dict) -> Result:
     # Reverse direction. The forward check cannot see this: a distribution that
     # was dropped from the code but left in requirements.txt is declared, so
     # nothing complains, and a clean install keeps pulling a package the skill
-    # never uses. Measured 2026-10-09: archviz-diagram declared `seaborn>=0.12`
+    # never uses. Measured 2026-10-09: tectviz-diagram declared `seaborn>=0.12`
     # whose only occurrence in the whole repo is a *commented-out*
     # `plt.style.use('seaborn-v0_8-whitegrid')` in examples/.
     #
@@ -928,7 +928,7 @@ def check_pycompile(root: Path, cfg: dict) -> Result:
     `ast.parse` on each file and *skips* whatever raises `SyntaxError`, because a
     file it cannot parse simply contributes no imports. Correct for `deps`,
     fatal as a gate. Measured 2026-10-09, that gap held a real defect:
-    `archviz-diagram/examples/deliverables-python-bar.py` is a markdown fragment
+    `tectviz-diagram/examples/deliverables-python-bar.py` is a markdown fragment
     wearing a `.py` extension — a closing ``` fence on line 33, then a bullet
     list. It landed in `41c50aa` (the v0.0.4 release) and has never once
     compiled. Nothing referenced it, so nothing ever noticed.
@@ -1122,7 +1122,7 @@ def check_prose(root: Path, cfg: dict) -> Result:
       3. 2026-10-09 — four repos' `.github/workflows/ci.yml` said "Seven
          checks" (and layout said "Five") while the kit ran eight; ADR-003 had
          *already declared* the count belongs in `--list` and that the CI
-         comments were cleaned up, but only archviz-diagram's was.
+         comments were cleaned up, but only tectviz-diagram's was.
 
     A prose count is a second copy of a fact that already has a source of
     truth, and it drifts the instant a check is added — exactly the disease
@@ -1162,7 +1162,7 @@ def check_prose(root: Path, cfg: dict) -> Result:
                 continue
             r.fail(
                 f"{rel}:{ln} 写死了检查数量（{m.group(0).strip()!r}）—— "
-                "权威来源是 `python3 scripts/check_archviz.py --list`，"
+                "权威来源是 `python3 scripts/check_tectviz.py --list`，"
                 "散文里的计数必然随新增检查漂移（本缺陷已复发三次）"
             )
 
@@ -1174,7 +1174,7 @@ def check_prose(root: Path, cfg: dict) -> Result:
 def check_shared(root: Path, cfg: dict) -> Result:
     """Cross-repo shared files must match a declared hash.
 
-    The family's convention is "archviz-diagram is the source, the others carry
+    The family's convention is "tectviz-diagram is the source, the others carry
     synced copies" (ADR-003). `--self-hash` guards the *kit script* itself, but
     nothing guarded the **shared content files** — `references/design-judgment.md`
     is byte-identical across all five repos today (measured 2026-10-09: 1289
@@ -1318,7 +1318,7 @@ GOOD_USES_PIL = "from PIL import Image\n"
 
 # The real defect this kit was extended to catch, reduced to its shape: a closing
 # markdown fence, then a bullet list with a `→` in it. Found verbatim in
-# archviz-diagram/examples/deliverables-python-bar.py on 2026-10-09.
+# tectviz-diagram/examples/deliverables-python-bar.py on 2026-10-09.
 GOOD_MARKDOWN_AS_PY = (
     "import plotly.express as px\n"
     "\n"
@@ -1615,7 +1615,7 @@ def load_config(root: Path) -> dict:
     cfg = json.loads(read_text(path))
     # Reject unknown keys. A config is a contract, and a key nothing reads is a
     # claim nothing checks — exactly the disease this kit exists to catch. It
-    # had already happened: `archviz-checks.json` carried a `"kit": 1` field
+    # had already happened: `tectviz-checks.json` carried a `"kit": 1` field
     # from the initial commit that no code ever read, no doc ever mentioned,
     # and nothing ever bumped (KIT_VERSION reached 4 while `kit` sat at 1).
     # A stale, unread version claim is indistinguishable from a correct one to
@@ -1631,7 +1631,7 @@ def load_config(root: Path) -> dict:
 
 
 def main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser(prog="check_archviz.py", description=__doc__.split("\n")[0])
+    ap = argparse.ArgumentParser(prog="check_tectviz.py", description=__doc__.split("\n")[0])
     ap.add_argument("--only", action="append", default=[], help="只跑指定检查（可重复）")
     ap.add_argument("--list", action="store_true", help="列出本仓已配置的检查")
     ap.add_argument("--self-test", action="store_true", help="跑对抗性 fixture 自测")

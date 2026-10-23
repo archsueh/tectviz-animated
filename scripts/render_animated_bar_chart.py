@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Animated bar chart renderer for archviz-diagram + archviz-animated crossover.
+Animated bar chart renderer for tectviz-diagram + tectviz-animated crossover.
 Generates growing bar chart animation as GIF.
 """
 import argparse
@@ -11,7 +11,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
-# Theme from archviz-animated
+# Theme from tectviz-animated
 THEME = {
     "bg": "#000000",
     "white": "#f4f0ee",
@@ -24,7 +24,7 @@ THEME = {
     "pink": "#ff7ab6",
 }
 
-# Chart colors (from archviz-diagram)
+# Chart colors (from tectviz-diagram)
 CHART_COLORS = [
     "#002fa7",  # IKB
     "#94a3b8",  # Slate

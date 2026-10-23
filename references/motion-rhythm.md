@@ -1,6 +1,6 @@
 # Motion Rhythm（动效节奏）
 
-> 借鉴 guanmo-ai/design-style@91f900d（MIT）。2026-10-21 先写进盒子工作流 `archviz-anime` §D，2026-10-23 并回本仓（真相源）。
+> 借鉴 guanmo-ai/design-style@91f900d（MIT）。2026-10-21 先写进盒子工作流 `tectviz-animated` §D，2026-10-23 并回本仓（真相源）。
 > 适用：叙事型动效短片（章节式讲解、风格演示，Remotion/HTML），以及本仓所有 GIF/MP4/WebGL 动画的缓动与节拍。
 
 1. **节拍网格**：60fps 时 1 拍 = 30 帧（120 BPM），20fps 的 GIF 时 1 拍 = 10 帧。所有转场与关键帧落在拍点。

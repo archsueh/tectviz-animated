@@ -85,7 +85,7 @@
     },
     {
       "path": "scripts/git-pre-commit.sh",
-      "sha256": "318cccc162b686c71fa1133ba9d75f4c4879f347c4330a98fa6211466097816c"
+      "sha256": "dfcfae3d7458caa54a38ed7659d8ffc4adc0749ea5a049e8c84c11d31cf0d16c"
     }
   ]
 }

@@ -27,7 +27,7 @@ fi
 # so it runs first: fail fast on a drifted palette registry rather than after
 # a formatting pass. Mirrors the same-named CI step.
 #
-# The palette registry is a **archviz-diagram-only** concept: the other four
+# The palette registry is a **tectviz-diagram-only** concept: the other four
 # repos have no `_archviz-theme.html` and no palette gate, so the script is
 # absent there. Guard on existence rather than calling unconditionally — the
 # unconditional call made every commit in the other four repos abort with
@@ -44,14 +44,14 @@ fi
 # Same class of problem, same placement: fail fast before the sync/prettier
 # block. The kit owns version / byte budget / routing surface / count claims /
 # reference reachability / declared imports / compilation / CJK encoding.
-# Do not write the count here — run `python3 scripts/check_archviz.py --list`.
+# Do not write the count here — run `python3 scripts/check_tectviz.py --list`.
 # This comment has drifted twice already. SKILL.md metadata.version is the
 # truth for the version check. Mirrors the same-named CI steps.
 echo "Checking consistency kit..."
-python3 "$ROOT/scripts/check_archviz.py"
+python3 "$ROOT/scripts/check_tectviz.py"
 
 echo "Checking consistency kit's own checker..."
-python3 "$ROOT/scripts/check_archviz.py" --self-test >/dev/null
+python3 "$ROOT/scripts/check_tectviz.py" --self-test >/dev/null
 
 # Order is load-bearing and must match .github/workflows/ci.yml:
 #   sync modules -> prettier --write -> stage
@@ -60,8 +60,8 @@ python3 "$ROOT/scripts/check_archviz.py" --self-test >/dev/null
 # `git diff --exit-code` check. Both sync scripts exit non-zero if a template
 # is missing its anchor, which aborts the commit on purpose.
 #
-# Same existence-guard as the palette block above: only archviz-diagram and
-# archviz-3d carry the sync scripts and `templates/html`; the other three repos
+# Same existence-guard as the palette block above: only tectviz-diagram and
+# tectviz-3d carry the sync scripts and `templates/html`; the other three repos
 # have neither, and an unconditional call aborts their commits (measured
 # 2026-10-09). Guard each piece on its own presence so a repo without HTML
 # templates still gets the kit gates above.

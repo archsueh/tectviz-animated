@@ -1,7 +1,7 @@
-# Python dependencies for the archviz-animated scripts.
+# Python dependencies for the tectviz-animated scripts.
 #   pip install -r requirements.txt
 #
-# The consistency kit (scripts/check_archviz.py) is stdlib-only on purpose and
+# The consistency kit (scripts/check_tectviz.py) is stdlib-only on purpose and
 # needs none of these — it has to be able to guard this repo from a bare Python.
 
 # scripts/render_animated_bar_chart.py, render_animated_diagram.py,

@@ -1,5 +1,5 @@
 ---
-name: archviz-animated
+name: tectviz-animated
 description: |
   构建视觉（tect=建造者，viz=视觉）的动效技能，不做建筑、不出建筑效果图；这里的「架构」指软件/技术架构。
   3 模式：柱状图动画 (Bar Chart Animation)、数学可视化动画 (Math Visualization)、物理场可视化 (Yang-Mills Gauge Field)。
@@ -9,7 +9,7 @@ description: |
 license: MIT
 metadata:
   version: 0.2.2
-  source: https://github.com/archsueh/archviz-animated
+  source: https://github.com/archsueh/tectviz-animated
   risk: safe
   author: archsueh
   triggers: 动态架构图, animated diagram, 架构动画, excalidraw, 技术图动效, gif 架构图, architecture, diagram, animated, gif, python, hand-drawn
@@ -19,7 +19,7 @@ metadata:
 
 黑底手绘风格技术架构动态图，三交付物全流程。依赖：`pip install Pillow>=10.0.0`
 
-> **视觉规范**：黑底手绘风格 token 见 **archviz-skills 共享设计系统**（`archviz-diagram` 的 `DESIGN.md`）；深色工程语境对齐第四套视觉语言 **Technical Blueprint**（`#0d1b2a` / `#5fd0e8`）。
+> **视觉规范**：黑底手绘风格 token 见 **tectviz-skills 共享设计系统**（`tectviz-diagram` 的 `DESIGN.md`）；深色工程语境对齐第四套视觉语言 **Technical Blueprint**（`#0d1b2a` / `#5fd0e8`）。
 
 ---
 
@@ -131,7 +131,7 @@ metadata:
 pip install "Pillow>=10.0.0"
 
 # 渲染
-python3 ~/Developer/archviz-animated/scripts/render_animated_diagram.py \
+python3 ~/Developer/tectviz-animated/scripts/render_animated_diagram.py \
   --spec spec.json \
   --outdir ./output \
   --basename archer-router \
@@ -168,7 +168,7 @@ python3 ~/Developer/archviz-animated/scripts/render_animated_diagram.py \
 
 ## [6] 柱状图动画 (Bar Chart Animation)
 
-交叉优化：archviz-diagram + archviz-animated
+交叉优化：tectviz-diagram + tectviz-animated
 
 **功能：** 将柱状图数据转换为生长动画 GIF
 
