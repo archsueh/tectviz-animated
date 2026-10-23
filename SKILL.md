@@ -328,6 +328,7 @@ PYTHONPATH="" /usr/bin/python3 scripts/render_yang_mills.py \
 | `references/spec-format.md` | JSON spec 完整字段规范 |
 | `references/yang-mills-analysis.md` | 杨-米尔斯参考视频的像素级分析：正确 shader 调色表（R/G 比值分带）+ v1→v4 失败记录 |
 | `references/video-reference-replication.md` | 无 vision API 时复刻参考视频风格的分析流程：ffprobe 元数据 → ffmpeg 抽帧 → 亮度分带 → R/G 比值判色 → 通道主导性 → 径向剖面 |
+| `references/motion-rhythm.md` | 动效节奏：节拍网格、四条缓动、时间轴先行、章节语法、联系表质检（叙事型短片与全部动画共用） |
 | `references/design-judgment.md` | 交付前自检：五段判断链 / 六维度 / 选模型路由 / 三条硬边界 |
 
 > 复刻参考视觉时**先出数据报告再写 shader**，不要凭文字描述猜配色——实测「发光的金色表面」实际是冷绿橄榄，文字描述会骗人。
