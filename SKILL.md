@@ -1,6 +1,7 @@
 ---
 name: archviz-animated
 description: |
+  构建视觉（tect=建造者，viz=视觉）的动效技能，不做建筑、不出建筑效果图；这里的「架构」指软件/技术架构。
   3 模式：柱状图动画 (Bar Chart Animation)、数学可视化动画 (Math Visualization)、物理场可视化 (Yang-Mills Gauge Field)。
   技术架构动态图全流程：内容分析 → JSON spec 构建 → Python 渲染 → 三交付物（.excalidraw 可编辑源 + PNG 静态图 + GIF 动画）。
   黑底手绘风格，glow 流光 + pulse 模块动效，无需 image API，纯代码生成，结果完全确定可复现。
